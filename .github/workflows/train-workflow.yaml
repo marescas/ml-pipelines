@@ -12,7 +12,6 @@ jobs:
         run: |
           pip install -r requirements.txt
           dvc repro
-          git fetch --prune
-          dvc metrics diff --show-md main > test_report.md
           cml-publish metrics/train_metrics.txt --md >> test_report.md
+          cml-publish metrics/test_metrics.txt --md >> test_report.md
           cml-send-comment test_report.md
