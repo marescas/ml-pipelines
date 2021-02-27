@@ -27,5 +27,7 @@ stages:
       - evaluate_model.py
       - models/model.sav
       - processed_data/test.pkl
-    outs:
-      - metrics/test_metrics.txt
+    metrics:
+      - metrics/test_metrics.txt:
+          cache: false
+
