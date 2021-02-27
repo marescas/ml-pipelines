@@ -1,0 +1,58 @@
+get_data:
+  cmd: python get_data.py
+  deps:
+  - path: get_data.py
+    md5: 9c6323a00f7e7f8d642ac33cd39c7df3
+    size: 312
+  outs:
+  - path: raw_data/data
+    md5: 42615765a885ddf54427f12c34a0a070
+    size: 4551
+preprocess_data:
+  cmd: python preprocess_data.py
+  deps:
+  - path: preprocess_data.py
+    md5: ba377d611ef3b7be50048895c8167794
+    size: 491
+  - path: raw_data/data
+    md5: 42615765a885ddf54427f12c34a0a070
+    size: 4551
+  outs:
+  - path: processed_data/test.pkl
+    md5: 80c1067bdd797bd761e5ccd5959a6024
+    size: 2268
+  - path: processed_data/train.pkl
+    md5: 0d50a9cf377c4128199a6cfc9726dca5
+    size: 6048
+train_model:
+  cmd: python train_model.py
+  deps:
+  - path: processed_data/train.pkl
+    md5: 0d50a9cf377c4128199a6cfc9726dca5
+    size: 6048
+  - path: train_model.py
+    md5: eebcb4ec10ee66ca49dfc56bec1681a0
+    size: 814
+  outs:
+  - path: metrics/train_metrics.txt
+    md5: 6f83771a500c304151708ef491b60847
+    size: 66
+  - path: models/model.sav
+    md5: 690170b0bd731665c3e429f69e7a4b8a
+    size: 3168
+evaluate_model:
+  cmd: python evaluate_model.py
+  deps:
+  - path: evaluate_model.py
+    md5: 586780a7df987be554eed274cfc09aa3
+    size: 510
+  - path: models/model.sav
+    md5: 690170b0bd731665c3e429f69e7a4b8a
+    size: 3168
+  - path: processed_data/test.pkl
+    md5: 80c1067bdd797bd761e5ccd5959a6024
+    size: 2268
+  outs:
+  - path: metrics/test_metrics.txt
+    md5: c4cb0e0a18826991074bba9bb74f5772
+    size: 426

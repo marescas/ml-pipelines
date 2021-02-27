@@ -1,0 +1,31 @@
+stages:
+  get_data:
+    cmd: python get_data.py
+    deps:
+      - get_data.py
+    outs:
+      - raw_data/data
+  preprocess_data:
+    cmd: python preprocess_data.py
+    deps:
+      - preprocess_data.py
+      - raw_data/data
+    outs:
+      - processed_data/train.pkl
+      - processed_data/test.pkl
+  train_model:
+    cmd: python train_model.py
+    deps:
+      - train_model.py
+      - processed_data/train.pkl
+    outs:
+      - models/model.sav
+      - metrics/train_metrics.txt
+  evaluate_model:
+    cmd: python evaluate_model.py
+    deps:
+      - evaluate_model.py
+      - models/model.sav
+      - processed_data/test.pkl
+    outs:
+      - metrics/test_metrics.txt
