@@ -10,7 +10,7 @@ if __name__ == '__main__':
     model = SVC()
     parameters = {
         'kernel': ('linear', 'rbf'),
-        'C': [1, 10, 100, 1000, 10000]
+        'C': [ 10, 100, 1000, 10000]
     }
     clf = GridSearchCV(model, parameters, cv=10, n_jobs=-1, verbose=2)
     clf.fit(data[FEATURES], data[LABEL])
