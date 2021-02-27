@@ -12,6 +12,6 @@ jobs:
         run: |
           pip install -r requirements.txt
           dvc repro
-          cml-publish metrics/train_metrics.txt --md >> test_report.md
-          cml-publish metrics/test_metrics.txt --md >> test_report.md
+          cat metrics/train_metrics.txt > test_report.md
+          cat metrics/test_metrics.txt >> test_report.md
           cml-send-comment test_report.md
