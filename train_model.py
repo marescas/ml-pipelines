@@ -20,5 +20,5 @@ if __name__ == '__main__':
         os.mkdir(MODELS_PATH)
     with open(f"{METRICS_PATH}/train_metrics.txt", "w") as f:
         f.write(f"Train score is {clf.best_score_} \n")
-        f.write(f"Best params are {clf.best_params_}")
+        f.write(f"Best params are {clf.best_params_} \n")
     joblib.dump(clf.best_estimator_, MODEL_SAVED_PATH)

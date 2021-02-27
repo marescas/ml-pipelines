@@ -1,3 +1,4 @@
 wget
 pandas
 sklearn
+matplotlib
